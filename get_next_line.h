@@ -6,17 +6,23 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:56:30 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/05/15 16:57:45 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/05/19 15:36:00 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-//INITIAL FOR BUFER, WILL I NEED IT?
-# define BUFFER 5
+
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 // read function
 # include <unistd.h>
+//size_t
+# include <stdlib.h>
 
 //DELEEEEEEEEEEEEEEEEEEEEEETE: PRINTFF
 # include <stdio.h>
@@ -25,7 +31,9 @@
 
 
 char	*get_next_line(int fd);
-
-
+char	*update_output(char *buffer, char *output);
+void	ft_memcpy_modified(char *dest, char *src, size_t n);
+char	*check_buffer(char *buffer, char * output);
+ssize_t	ft_strlen_modified(char *str);
 #endif
 
