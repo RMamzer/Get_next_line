@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:55:27 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/05/20 17:52:08 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/05/20 18:54:49 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*update_output(char *buffer, char *output)
 	if (!new_output)
 	// Should i assign pointer to NULL;
 		return (free(output), NULL);
-	if (out_len> 0)
+	if (out_len> 0)// COMPARE TO NULL?
 		ft_memcpy_modified(new_output, output, out_len);
 	ft_memcpy_modified(&new_output[out_len], buffer, buf_len);
 	free(output);
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 {
 
 	static char	buffer[BUFFER_SIZE +1];
-	static char *output;
+	char *output;
 	ssize_t	amount_read;
 
 	if (fd < 0 ||BUFFER_SIZE <= 0)
