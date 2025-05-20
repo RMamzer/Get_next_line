@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:55:27 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/05/19 16:42:58 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/05/20 17:52:08 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*update_output(char *buffer, char *output)
 {
 	size_t	buf_len;
 	size_t	out_len;
-	size_t	i;
 	char	*new_output;
 
 	buf_len = ft_strlen_modified(buffer);
@@ -27,8 +26,9 @@ char	*update_output(char *buffer, char *output)
 	if (!new_output)
 	// Should i assign pointer to NULL;
 		return (free(output), NULL);
-	ft_memcpy_modified(new_output, output, out_len - 1);
-	ft_memcpy_modified(&new_output[out_len], buffer, buf_len  -1);
+	if (out_len> 0)
+		ft_memcpy_modified(new_output, output, out_len);
+	ft_memcpy_modified(&new_output[out_len], buffer, buf_len);
 	free(output);
 	return (new_output);
 }
@@ -45,13 +45,14 @@ void	ft_memcpy_modified(char *dest, char *src, size_t n)
 		src[i] = '\0';
 		i++;
 	}
+	dest[i] = '\0';
 }
-
-
 
 char	*check_buffer(char *buffer, char * output)
 {
 	int i;
+
+	i = 0;
 	while(i < BUFFER_SIZE )
 	{
 		if (buffer[i] != '\0')
@@ -67,10 +68,14 @@ ssize_t ft_strlen_modified(char *str)
 	ssize_t i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
 	{
 		while (str[i] != '\0' && str[i] != '\n')
 			i++;
 	}
+	if (str[i]=='\n')
+		i++;
 	return (i);
 }
 
@@ -87,14 +92,16 @@ char	*get_next_line(int fd)
 
 	output = NULL;
 	output = check_buffer(buffer, output);
-
 	amount_read = 1;
-
+	if (output != NULL && output[ft_strlen_modified(output) -1]  == '\n')
+		return (output);
 	while(amount_read > 0)
 	{
 		amount_read = read(fd, buffer, BUFFER_SIZE);
 		output = check_buffer(buffer, output);
-		if (output[ft_strlen_modified(output)] - 1 == '\n')
+		if (output == NULL)
+			return(NULL);
+		if (output[ft_strlen_modified(output) -1]  == '\n')
 			return (output);
 	}
 	return (output);
