@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:57:23 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/05/21 18:37:21 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/05/22 11:58:46 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,33 @@ int	main(void)
 	int		count;
 
 	count = 0;
-	fd = open("a.out", O_RDONLY);
+	fd = open("text full.txt", O_RDONLY);
 	if (fd == -1)
 		return (1);
-	// while (1)
-	// {
-	// 	next_line = get_next_line(fd);
-	// 	if (!next_line)
-	// 		break ;
-	// 	count++;
-	// 	printf("[%d] -> %s", count, next_line);
-	// 	free (next_line);
-	// 	next_line = NULL;
-	// 	close  (fd);
-	// }
-	// close(fd);
-
 	while (1)
 	{
-		next_line = get_next_line(1);
+		next_line = get_next_line(fd);
+		if (!next_line)
+			break ;
 		count++;
 		printf("[%d] -> %s", count, next_line);
+		free (next_line);
+		next_line = NULL;
 	}
-	return (0);
+	close(fd);
 
-
+	// while (1)
+	// {
+	// 	next_line = get_next_line(1);
+	// 	count++;
+	// 	printf("[%d] -> %s", count, next_line);
+	// }
+	// return (0);
 }
+
+
+
+
 // 	#include <stdio.h>
 // #include <stdlib.h>
 
