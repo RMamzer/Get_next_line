@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:56:08 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/05/22 17:08:10 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/05/22 18:33:03 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*update_output(char *buffer, char *output, int	*check)
 
 	buf_len = ft_strlen_modified(buffer);
 	out_len = ft_strlen_modified(output);
-	new_output = malloc(buf_len + out_len + 1);
+	new_output = NULL; //malloc(buf_len + out_len + 1);
 	if (!new_output)
 	{
 		free(output);

@@ -6,7 +6,7 @@
 /*   By: rmamzer <rmamzer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:24:46 by rmamzer           #+#    #+#             */
-/*   Updated: 2025/05/22 17:05:59 by rmamzer          ###   ########.fr       */
+/*   Updated: 2025/05/22 18:37:10 by rmamzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int	main(void)
 			break ;
 		next_line2 = get_next_line(fd2);
 		if (!next_line2)
+		{
+			free (next_line1);
 			break ;
+		}
 		count++;
 		printf("fd1 - %d -> %s", count, next_line1);
 		free (next_line1);
